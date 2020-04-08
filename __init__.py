@@ -229,8 +229,8 @@ class User:
 
 async def main():
 
-	user = await GetUser.loginRedditUser("username", "password")
-	history = await user.getHistory("kianoe")
+	user = await GetUser.loginRedditUser(input("Username: ").strip(), input("Password: "))
+	history = await user.getHistory("kianoe")  # replace this with your friend of choice
 	
 	# upvote every post in this user's history that you can vote on
 	_ = await asyncio.gather(*[user.vote(post["name"], User.UPVOTE) for post in history if not post["archived"]])
